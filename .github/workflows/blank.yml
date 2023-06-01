@@ -23,8 +23,9 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-      - run: echo ${{ github.workspace }}
+      - name: checkout repo
+        uses: actions/checkout@v3
+        
       # Runs a single command using the runners shell
       - name: Generate JAR
         run: mvn -f ./source-app/pom.xml clean package
@@ -37,13 +38,15 @@ jobs:
   use-jar:
     needs: build
     runs-on: ubuntu-22.04
-    container: amazoncorretto:17-alpine3.17
+    container: docker
     steps:
       - name: Download JAR artifact
         uses: actions/download-artifact@v3
         with:
           name: jar-artifact
           path: ./downloaded-artifact
-      - run: ls -la
-      - run: ls ./downloaded-artifact
+      - name: checkout repo
+        uses: actions/checkout@v3
+      - run: docker build -t java:${{ github.sha }} -f ./source-app/java.dockerfile .
+      - run: docker images
 
