@@ -19,6 +19,9 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     container: maven:3.9.2-amazoncorretto-17
+    defaults:
+      run:
+        working-directory: ./app
     # The type of runner that the job will run on
     
 
@@ -29,11 +32,11 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Generate JAR
-        run: ls /github/workspace/ #cd source-app && mvn -f /github/workspace/source-app/pom.xml clean package
+        run: ls ./app #cd source-app && mvn -f /github/workspace/source-app/pom.xml clean package
 
-      - name: Archive code coverage results
-        uses: actions/upload-artifact@v3
-        with:
-          name: jar-artifact
-          path: /github/workspace/source-app/target/social-network-0.0.1-SNAPSHOT.jar
+#       - name: Archive code coverage results
+#         uses: actions/upload-artifact@v3
+#         with:
+#           name: jar-artifact
+#           path: /github/workspace/source-app/target/social-network-0.0.1-SNAPSHOT.jar
 
