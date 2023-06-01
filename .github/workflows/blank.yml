@@ -47,6 +47,6 @@ jobs:
         with:
           name: jar-artifact
           path: ./downloaded-artifact
-      - run: ls # docker build -t java:${{ github.sha }} -f ./source-app/java.dockerfile .
-      # - run: docker images
+      - run: docker build -t java:${{ github.sha }} -f ./source-app/java.dockerfile .
+      - run: docker images
 
