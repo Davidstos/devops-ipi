@@ -29,11 +29,11 @@ jobs:
       - run: echo ${{ github.workspace }}
       # Runs a single command using the runners shell
       - name: Generate JAR
-        run: ls -la #cd /home/runner/work/devops-ipi/devops-ipi/source-app && mvn -f /home/runner/work/devops-ipi/devops-ipi/source-app/pom.xml clean package
+        run: mvn -f ./source-app/pom.xml clean package
 
-#       - name: Archive code coverage results
-#         uses: actions/upload-artifact@v3
-#         with:
-#           name: jar-artifact
-#           path: /github/workspace/source-app/target/social-network-0.0.1-SNAPSHOT.jar
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: jar-artifact
+          path: ./source-app/target/social-network-0.0.1-SNAPSHOT.jar
 
