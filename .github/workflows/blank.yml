@@ -19,8 +19,6 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     container: maven:3.9.2-amazoncorretto-17
-    # The type of runner that the job will run on
-    
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -36,4 +34,16 @@ jobs:
         with:
           name: jar-artifact
           path: ./source-app/target/social-network-0.0.1-SNAPSHOT.jar
+  use-jar:
+    needs: build
+    runs-on: ubuntu-22.04
+    container: amazoncorretto:17-alpine3.17
+    steps:
+      - name: Download JAR artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: jar-artifact
+          path: ./downloaded-artifact
+      - run: ls -la
+      - run: ls ./downloaded-artifact
 
