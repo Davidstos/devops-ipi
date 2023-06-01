@@ -40,13 +40,13 @@ jobs:
     runs-on: ubuntu-22.04
     container: docker
     steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
       - name: Download JAR artifact
         uses: actions/download-artifact@v3
         with:
           name: jar-artifact
           path: ./downloaded-artifact
-#       - name: checkout repo
-#         uses: actions/checkout@v3
       - run: ls # docker build -t java:${{ github.sha }} -f ./source-app/java.dockerfile .
       # - run: docker images
 
