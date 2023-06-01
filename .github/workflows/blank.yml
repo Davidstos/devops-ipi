@@ -29,7 +29,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Generate JAR
-        run: cd source-app && mvn -f /github/workspace/source-app/pom.xml clean package
+        run: ls /github/workspace/ #cd source-app && mvn -f /github/workspace/source-app/pom.xml clean package
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
