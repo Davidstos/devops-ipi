@@ -45,8 +45,8 @@ jobs:
         with:
           name: jar-artifact
           path: ./downloaded-artifact
-      - name: checkout repo
-        uses: actions/checkout@v3
+#       - name: checkout repo
+#         uses: actions/checkout@v3
       - run: ls # docker build -t java:${{ github.sha }} -f ./source-app/java.dockerfile .
       # - run: docker images
 
