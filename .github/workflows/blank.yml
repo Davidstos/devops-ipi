@@ -29,10 +29,13 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+      - run: |
+          echo ${{ github.workspace }}
+          echo $GITHUB_WORKSPACE
 
       # Runs a single command using the runners shell
       - name: Generate JAR
-        run: ls ./app #cd source-app && mvn -f /github/workspace/source-app/pom.xml clean package
+        run: ls #cd source-app && mvn -f /github/workspace/source-app/pom.xml clean package
 
 #       - name: Archive code coverage results
 #         uses: actions/upload-artifact@v3
