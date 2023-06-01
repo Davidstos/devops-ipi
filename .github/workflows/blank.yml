@@ -18,7 +18,7 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     runs-on: ubuntu-22.04
-    container: amazoncorretto:17-alpine3.17
+    container: maven:3.9.2-amazoncorretto-17
     # The type of runner that the job will run on
     
 
