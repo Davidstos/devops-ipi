@@ -1,0 +1,75 @@
+<!---<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">-->
+<!---    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>-->
+
+<!--    <title>Login</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container mt-5">-->
+<!--    <div class="" style="background-color: rgba(145, 175, 200, 0.644);">-->
+<!--        <h2 class="text-center">APP MESSENGER CO</h2>-->
+<!--        <img src="logo.png" alt="">-->
+<!--        <div class="">-->
+<!--            <div class="d-flex justify-content-around">-->
+<!--                <form name="loginForm" action="login" method="post">-->
+<!--                    <div class="col-3 d-flex justify-content-around">-->
+<!--                        <label class="m-1" for="">email</label>-->
+<!--                        <input type="text" name="mail" value="">-->
+<!--                    </div>-->
+<!--                    <div class="col-3 d-flex justify-content-around mt-4">-->
+<!--                        <label class="" for="">password</label>-->
+<!--                        <input class="" type="password"  name="password" value="">-->
+<!--                    </div>-->
+<!--                    <input class="" type="submit"  name="submit" value=submit"">-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <a class="" href="#">Forgot my password</a>-->
+<!--        <p>Don't have an account ? <a class="" href="#">Sign in</a> </p>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Login</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <br/><br/>
+    <form th:action="@{/login}" method="POST" class="form-signin" style="width:30%;margin:auto">
+        <h1 class="form-signin-heading titre">Authentification</h1>
+
+        <br/>
+        <div align="center" th:if="${param.error}">
+            <p style="font-size: 20; color: #FF1C19;">Username or password is invalid</p>
+        </div>
+
+        <input type="text" id="username" name="username" th:placeholder="user"
+               class="form-control" /> <br/>
+        <input type="password"  th:placeholder="user"
+               id="password" name="password" class="form-control" /> <br />
+
+
+        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login"></button>
+    </form>
+</div>
+</body>
+</html>
