@@ -19,9 +19,6 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     container: maven:3.9.2-amazoncorretto-17
-    defaults:
-      run:
-        working-directory: ./app
     # The type of runner that the job will run on
     
 
@@ -29,17 +26,14 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      - run: |
-          echo ${{ github.workspace }}
-          echo $GITHUB_WORKSPACE
-
+      - run: echo ${{ github.workspace }}
       # Runs a single command using the runners shell
       - name: Generate JAR
-        run: ls #cd source-app && mvn -f /github/workspace/source-app/pom.xml clean package
+        run: cd /home/runner/work/devops-ipi/devops-ipi/source-app && mvn -f /home/runner/work/devops-ipi/devops-ipi/source-app/pom.xml clean package
 
-#       - name: Archive code coverage results
-#         uses: actions/upload-artifact@v3
-#         with:
-#           name: jar-artifact
-#           path: /github/workspace/source-app/target/social-network-0.0.1-SNAPSHOT.jar
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: jar-artifact
+          path: /github/workspace/source-app/target/social-network-0.0.1-SNAPSHOT.jar
 
