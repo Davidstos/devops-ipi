@@ -28,11 +28,12 @@ jobs:
       - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
-      - name: generate-jar
-        run: mvn -f /home/app/pom.xml clean package
+      - name: Generate JAR
+        run: mvn -f /github/workspace/pom.xml clean package
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
         with:
-          name: export-jar
-          path: /home/app/target/social-network-0.0.1-SNAPSHOT.jar
+          name: jar-artifact
+          path: /github/workspace/target/social-network-0.0.1-SNAPSHOT.jar
+
