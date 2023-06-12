@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link th:href="@{/css/style-Welcome.css}" rel="stylesheet" />
+    <link href="../static/css/style-Welcome.css" rel="stylesheet">    
+
+
+
+
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+            crossorigin="anonymous"
+    />
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+            crossorigin="anonymous"
+    ></script>
+</head>
+<body>
+
+<input type="hidden" th:value="${user.id}" name="id">
+<div class="outer-container">
+    <div class="inner-container">
+        <div class="centered-content">
+            <h1 class="titre" th:text="|Bienvenue  ${user.getFirstName()}|"></h1>
+            <br>
+            <a class="fond" th:href="|user/${user.id}|" onclick="user/${user.id}" href="#">Mon compte</a>
+            <a  class="fond" th:href="|user/${user.id}/friends|" onclick="user/${user.id}/friends" href="#">Amis</a>
+            <a class="fond" th:href="@{/chats}" onclick="@{/chats}" href="#">Liste des chats</a>
+            <a class="fond" th:href="@{/logout}" onclick="@{/logout}" href="#">Déconnexion</a>
+      </div>
+    </div>
+ </div>
+
+</body>
+</html>
