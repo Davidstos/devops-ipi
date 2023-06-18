@@ -45,6 +45,6 @@ jobs:
           name: jar-artifact
           path: ./downloaded-artifact
       - run: docker build -t ${{ vars.HARBOR_URL }}/${{ vars.HARBOR_REPO }}/java:${{ github.sha }} -f ./source-app/java.dockerfile .
-      - run: docker login -u ${{ vars.HARBOR_USER }} -p ${{ vars.HARBOR_PASSWORD }} ${{ vars.HARBOR_URL }}
+      - run: docker login -u '${{ vars.HARBOR_USER }}' -p '${{ vars.HARBOR_PASSWORD }}' ${{ vars.HARBOR_URL }}
       - run: docker push ${{ vars.HARBOR_URL }}/${{ vars.HARBOR_REPO }}/java:${{ github.sha }}
 
