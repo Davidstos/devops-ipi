@@ -23,7 +23,7 @@ public class LoginController {
 
     @RequestMapping(
             method = RequestMethod.GET,
-            value = "/login" //URL
+            value = "/" //URL
     )
     public ModelAndView login(){
         ModelAndView model = new ModelAndView("login");
