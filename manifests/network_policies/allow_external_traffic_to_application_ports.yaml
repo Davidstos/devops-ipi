@@ -7,7 +7,7 @@ spec:
   # Selects the pods for which the rule will be applied ( in this case application with the label app:web) 
   podSelector:
     matchLabels:
-      app: web
+      app: app1
   # Only on port 80 and 443
   ingress:
   - ports:
