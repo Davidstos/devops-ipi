@@ -1,15 +1,13 @@
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
-# No namespace is specified the rule will be applied to all pods that have the label app:web
 metadata:
   name: web-allow-external
 spec:
-  # Selects the pods for which the rule will be applied ( in this case application with the label app:web) 
+  # Séléctionne les pods avec le tag app1
   podSelector:
     matchLabels:
-      app: web
-  # Only on port 80 and 443
+      app: app1
+  # Autorise uniquement l'accès à l'app via le port 80
   ingress:
   - ports:
     - port: 80
-    - port: 443
