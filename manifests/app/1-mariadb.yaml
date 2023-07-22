@@ -77,3 +77,29 @@ spec:
       - name: mariadb-persistent-storage
         persistentVolumeClaim:
           claimName: mariadb-pv-claim
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: app1-mariadb-policy
+  namespace: app1
+spec:
+  podSelector:
+    matchLabels:
+      app: app1
+      tier: mariadb
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: app1
+              tier: mariadb
+      ports:
+        - protocol: TCP
+          port: 3306
+  egress:
+    - to:
+        - podSelector: {}
