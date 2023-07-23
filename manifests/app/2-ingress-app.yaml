@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: socialnetwork-ingress
+  namespace: socialnetwork
+spec:
+  rules:
+  - host: "socialnetwork.fr"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: socialnetwork-java
+            port:
+              number: 8080

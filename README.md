@@ -11,6 +11,7 @@ Travail réalisé:
 
 - L'équipe d'infra les manifests suivant:
   - manifest/app/1-netpol.yaml (network policies)
+  - manifest/app/2-ingress-app.yaml
   - manifest/RBAC/role-admin-role-dev.yaml
   - manifest/RBAC/role-manage-pods-dev.yaml
   - manifest/RBAC/role-binding-sylvie-dev.yaml
