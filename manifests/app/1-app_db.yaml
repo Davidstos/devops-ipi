@@ -1,0 +1,79 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: socialnetwork-mariadb
+  namespace: socialnetwork
+  labels:
+    app: socialnetwork
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: socialnetwork
+    tier: mariadb
+  clusterIP: None
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mariadb-pv-claim
+  namespace: socialnetwork
+  labels:
+    app: socialnetwork
+spec:
+  storageClassName: nfs-csi
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: socialnetwork-mariadb
+  namespace: socialnetwork
+  labels:
+    app: socialnetwork
+spec:
+  selector:
+    matchLabels:
+      app: socialnetwork
+      tier: db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: socialnetwork
+        tier: db
+    spec:
+      containers:
+      - image: mariadb:11
+        name: mariadb
+        env:
+          - name: MARIADB_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mariadb-secret
+                key: mariadb-root-password
+        ports:
+        - containerPort: 3306
+          name: mariadb
+        volumeMounts:
+        - name: mariadb-persistent-storage
+          mountPath: /var/lib/mariadb
+        livenessProbe:
+          tcpSocket:
+            port: 3306
+        resources:
+          limits:
+            cpu: 1
+            memory: 512Mi
+          requests:
+            cpu: 30m
+            memory: 256Mi
+      volumes:
+      - name: mariadb-persistent-storage
+        persistentVolumeClaim:
+          claimName: mariadb-pv-claim

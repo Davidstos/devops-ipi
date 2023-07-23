@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: socialnetwork-java
+  namespace: socialnetwork
+  labels:
+    app: socialnetwork
+spec:
+  ports:
+    - port: 8080
+  selector:
+    app: socialnetwork
+    tier: java
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: socialnetwork-java
+  namespace: socialnetwork
+  labels:
+    app: socialnetwork
+spec:
+  selector:
+    matchLabels:
+      app: socialnetwork
+      tier: java
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: socialnetwork
+        tier: java
+    spec:
+      containers:
+      - image: app1-web:latest
+        imagePullPolicy: Never
+        name: java
+        ports:
+        - containerPort: 8080
+          name: java
+        livenessProbe:
+          tcpSocket:
+            port: 8080
+        resources:
+          limits:
+            cpu: 1
+            memory: 512Mi
+          requests:
+            cpu: 30m
+            memory: 256Mi

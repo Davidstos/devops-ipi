@@ -1,0 +1,64 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+    name: default-deny-all
+    namespace: socialnetwork
+spec:
+  podSelector:
+    matchLabels:
+      app: socialnetwork
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress: []
+  egress: []
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: socialnetwork-mariadb-policy
+  namespace: socialnetwork
+spec:
+  podSelector:
+    matchLabels:
+      app: socialnetwork
+      tier: db
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: socialnetwork
+              tier: java
+      ports:
+        - protocol: TCP
+          port: 3306
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: socialnetwork-java-policy
+  namespace: socialnetwork
+spec:
+  podSelector:
+    matchLabels:
+      app: socialnetwork
+      tier: java
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from: []
+      ports:
+        - protocol: TCP
+          port: 8080
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: socialnetwork
+              tier: db
+      ports:
+        - protocol: TCP
+          port: 3306
