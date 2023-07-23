@@ -82,4 +82,4 @@ kubectl -n dev apply -f .\role-manage-pods-dev.yaml
 kubectl -n dev apply -f .\role-binding-bob-dev.yaml
 ```
 
-Pour Sylvie c'est la même chose mais il faut changer le "/CN=Bob Smith/O=admin" par "/CN=Sylvie Francon/O=Dev"
+Pour Sylvie c'est la même chose mais il faut changer le "/CN=Bob Smith/O=Dev" par "/CN=Sylvie Francon/O=Admin"
