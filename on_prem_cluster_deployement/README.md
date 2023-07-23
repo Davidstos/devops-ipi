@@ -1,6 +1,6 @@
 # Installation d'un cluster avec kubeadm
 ## Topologie retenue
-![02b350020e04dd61c82a903d2248d903.png](./_resources/02b350020e04dd61c82a903d2248d903.png)
+![02b350020e04dd61c82a903d2248d903.png](./ressources/02b350020e04dd61c82a903d2248d903.png)
 ## Prés requis
 
 - Compatible linux distribution
@@ -101,7 +101,7 @@ sudo sysctl --system
 ```
 
 #### Cgroups
-![f19ee80285538b03436bfad8579d7377.png](./_resources/f19ee80285538b03436bfad8579d7377.png)
+![f19ee80285538b03436bfad8579d7377.png](./ressources/f19ee80285538b03436bfad8579d7377.png)
 
 sudo systemctl restart containerd
 sudo systemctl enable containerd
@@ -112,7 +112,7 @@ sudo systemctl enable containerd
 kubeadm init --control-plane-endpoint=deb11-master1 // tous doit être en minuscule
 ```
 Résultat attendue :
-![78c9aca668479ec7e61dd17f0221df27.png](./_resources/78c9aca668479ec7e61dd17f0221df27.png)
+![78c9aca668479ec7e61dd17f0221df27.png](./ressources/78c9aca668479ec7e61dd17f0221df27.png)
 To start interacting with cluster, run following commands on master node,
 
 ```bash
@@ -128,8 +128,8 @@ kubectl get nodes
 kubectl cluster-info
 ```
 
-![5eeeceb0cb6ab9beb1ba53ba85a682a6.png](./_resources/5eeeceb0cb6ab9beb1ba53ba85a682a6.png)
-![662632473bf1997a60573699ebc052fa.png](./_resources/662632473bf1997a60573699ebc052fa.png)
+![5eeeceb0cb6ab9beb1ba53ba85a682a6.png](./ressources/5eeeceb0cb6ab9beb1ba53ba85a682a6.png)
+![662632473bf1997a60573699ebc052fa.png](./ressources/662632473bf1997a60573699ebc052fa.png)
 
 #### Join worker
 
