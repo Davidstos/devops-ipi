@@ -1,0 +1,9 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: dev
+  name: admin-role
+rules:
+- apiGroups: ["*"]  # Tous les groupes d'API
+  resources: ["*"]  # Toutes les ressources
+  verbs: ["*"]  # Toutes les actions

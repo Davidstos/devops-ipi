@@ -1,4 +1,14 @@
 # RBAC
+
+Pour le namespace dev nous avons deux utilisateur 
+
+-   Bob Smith en tant que développeur sur le namespace de dev
+-   Sylvie Francon en tant qu'admin du namespace de dev
+
+Dans cette documentation nous verrons comment créer un user.
+
+Vous trouverez dans le dossier /manifests/RBAC tous les manifests avec les roles et roles bindings de chaque user.
+
 ## Kubernetes CA
 Kubernetes n'a pas de concept d'utilisateurs, il s'appuie sur des certificats et ne fait confiance qu'aux certificats signés par sa propre autorité de certification.
 
@@ -47,7 +57,9 @@ Nous allons essayer d'éviter de gâcher notre configuration kubernetes actuelle
 Créer une entrée de cluster qui pointe vers le cluster et contient les détails du certificat CA :
 
 ```
-kubectl config set-cluster dev-cluster --server=https://127.0.0.1:52807 \
+# Pour l'option serveur regarder votre kubeconfig déjà existant
+
+kubectl config set-cluster dev-cluster --server=https://IP:PORT \
 --certificate-authority=ca.crt \
 --embed-certs=true 
 ```
@@ -66,6 +78,8 @@ L'utilisateur "Bob Smith" ne peut pas lister les ressources "pods" dans le group
 
 Pour donner l'accès à Bob:
 ```
-kubectl -n dev apply -f .\role.yaml
-kubectl -n dev apply -f .\rolebinding.yaml
+kubectl -n dev apply -f .\role-manage-pods-dev.yaml
+kubectl -n dev apply -f .\role-binding-bob-dev.yaml
 ```
+
+Pour Sylvie c'est la même chose mais il faut changer le "/CN=Bob Smith/O=admin" par "/CN=Sylvie Francon/O=Dev"
